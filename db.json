@@ -1,48 +1,23 @@
-{
-  "todos": [
-    {
-      "todoText": "new todo",
-      "completed": false,
-      "id": 1
-    },
-    {
-      "completed": true,
-      "id": 2
-    },
-    {
-      "todoText": "third todo",
-      "completed": true,
-      "id": 3
-    },
-    {
-      "completed": false,
-      "todoText": "wm9ug",
-      "id": 4
-    },
-    {
-      "completed": true,
-      "todoText": "1c67",
-      "id": 6
-    },
-    {
-      "completed": false,
-      "todoText": "tsfqv",
-      "id": 7
-    },
-    {
-      "completed": true,
-      "todoText": "m2px",
-      "id": 8
-    },
-    {
-      "completed": true,
-      "todoText": "uwo7q",
-      "id": 9
-    },
-    {
-      "completed": true,
-      "todoText": "qn536o",
-      "id": 10
-    }
-  ]
-}
+[
+  {
+    "id": 1 ,
+    "course":"html-css"
+  },
+  {
+    "id": 2 ,
+    "course":"java-script"
+  },
+  {
+    "id": 3 ,
+    "course":"node-js"
+  },
+  {
+    "id": 4 ,
+    "course":"mongo-db"
+  },
+  {
+    "id": 5 ,
+    "course":"react-js"
+  }
+  
+]
