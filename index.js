@@ -34,3 +34,14 @@ app.get('/api/courses/:id', (req, res) => {
     
     res.send(courses);
 });
+
+app.delete('/api/courses/:id', (req, res)=>{
+    const courses = dB.find(c => c.id === parseInt(req.params.id));
+    // If course doesn't exist return 404: Not Found
+    if (!courses) return res.status(404).send('The course was not found');
+    // delete course
+    const index = dB.indexOf(courses);
+    dB.splice(index, 1);
+    //response to clint
+    res.send(courses);
+});
