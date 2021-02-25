@@ -9,6 +9,7 @@
   "author": "@hackyourfuturebelgium",
   "license": "CC BY-SA",
   "dependencies": {
+    "express": "^4.17.1",
     "joi": "^17.4.0",
     "json-server": "^0.16.1"
   }
