@@ -58,7 +58,7 @@ app.post("/api/courses", (req, res) => {
     
     const course = {
       id: Date.now(),
-      name: req.body.name,
+      course: req.body.course,
     };
 
     dataFromJson.push(course);
