@@ -7,15 +7,15 @@ A collection of user stories you can choose from. Stories inside of each priorit
 > these are necessary for basic usability
 
 
-- [x] a user must be able to get all courses
+- [x] A user must be able to get all courses
       
-- [x]  a user must be able to get one course by id
+- [x]  A user must be able to get one course by id
 
-- [x]  a user must be able to post a new course with a unique id
+- [x]  A user must be able to post a new course with a unique id
     
-- [x]  a user be able put(update) an existing course
+- [x]  A user be able put(update) an existing course
     
-- [x]  a user be able to delete a course by id
+- [x]  A user be able to delete a course by id
 
 ## Should-Haves
 
