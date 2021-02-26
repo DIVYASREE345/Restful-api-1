@@ -1,47 +1,54 @@
 // dependencies
-const Joi = require('joi');
-const express = require('express');
+const Joi = require("joi");
+const express = require("express");
 const app = express();
-const fs = require('fs');
+const fs = require("fs");
 
 app.use(express.json());
-
-// reading the database
-const dataBase = fs.readFileSync('db.json');
-const dB = JSON.parse(dataBase);
 
 // Server: listening on a given port
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
-
-
-app.get('/', (req, res) => {
-    
-    res.send('Hello !!!');
+// index page
+app.get("/", (req, res) => {
+  res.send("Hello !!!");
 });
+//getting all courses
+app.get("/api/courses", (req, res) => {
+  fs.readFile("db.json", (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+    const courses = JSON.parse(data);
 
-
-app.get('/api/courses', (req, res) => {
-    res.send(dB); 
-}); 
+    res.send(courses);
+  });
+});
 
 // Getting a single id
-app.get('/api/courses/:id', (req, res) => {
-    
-    const courses = dB.find(c => c.id === parseInt(req.params.id));
+app.get("/api/courses/:id", (req, res) => {
+    //reading from the db.json file
+  fs.readFile("db.json", (err, data) => {
+    if (err) {
+      return console.error(err);
+    }
+    const courses = JSON.parse(data);
+    //finding the course with required id
+    const course = courses.find((c) => c.id === parseInt(req.params.id));
     // If course doesn't exist return 404: Not Found
-    if (!courses) return res.status(404).send('The course was not found');
-    
-    res.send(courses);
+    if (!course) return res.status(404).send("The course was not found");
+
+    res.send(course);
+  });
 });
 
-app.delete('/api/courses/:id', (req, res)=>{
-    const courses = dB.find(c => c.id === parseInt(req.params.id));
-    // If course doesn't exist return 404: Not Found
-    if (!courses) return res.status(404).send('The course was not found');
-    // delete course
-    const index = dB.indexOf(courses);
-    dB.splice(index, 1);
-    //response to clint
-    res.send(courses);
+app.delete("/api/courses/:id", (req, res) => {
+  const courses = dB.find((c) => c.id === parseInt(req.params.id));
+  // If course doesn't exist return 404: Not Found
+  if (!courses) return res.status(404).send("The course was not found");
+  // delete course
+  const index = dB.indexOf(courses);
+  dB.splice(index, 1);
+  //response to clint
+  res.send(courses);
 });
