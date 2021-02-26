@@ -1,26 +1,22 @@
 [
-    {
-        "id": 1,
-        "course": "html-css"
-    },
-    {
-        "id": 2,
-        "course": "java-script"
-    },
-    {
-        "id": 3,
-        "course": "node-js"
-    },
-    {
-        "id": 4,
-        "course": "mongo-db"
-    },
-    {
-        "id": 5,
-        "course": "react-js"
-    },
-    {
-        "id": 6,
-        "course": "react-js new"
-    }
+  {
+    "id": 1,
+    "course": "html-css"
+  },
+  {
+    "id": 2,
+    "course": "java-script"
+  },
+  {
+    "id": 3,
+    "course": "node-js"
+  },
+  {
+    "id": 4,
+    "course": "mongo-db"
+  },
+  {
+    "id": 5,
+    "course": "react-js"
+  }
 ]
