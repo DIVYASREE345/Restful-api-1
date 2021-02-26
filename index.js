@@ -36,12 +36,28 @@ app.get('/api/courses/:id', (req, res) => {
 });
 
 app.delete('/api/courses/:id', (req, res)=>{
-    const courses = dB.find(c => c.id === parseInt(req.params.id));
+    //read file from db.json
+    fs.readFile("db.json", (err, data)=> {
+        if (err){
+            return console.error(err);
+        }
+    const courses = JSON.parse(data);
+    //finding the course with required ID
+    const course = courses.find(c => c.id === parseInt(req.params.id));
     // If course doesn't exist return 404: Not Found
-    if (!courses) return res.status(404).send('The course was not found');
+    if (!course) return res.status(404).send('The course was not found');
     // delete course
-    const index = dB.indexOf(courses);
-    dB.splice(index, 1);
+    const index = courses.indexOf(course);
+    courses.splice(index, 1);
     //response to clint
-    res.send(courses);
+    res.send(course);
+    // update JSON
+    const updatedCourses = JSON.stringify(courses, null, 2);
+   fs.writeFile('db.json',updatedCourses, (err)=>{
+       if(err){
+           res.status(500).send(err);
+           return;
+       }
+   })
+});
 });
