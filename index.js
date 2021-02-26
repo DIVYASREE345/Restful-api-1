@@ -86,7 +86,7 @@ app.post("/api/courses", (req, res) => {
 
 function validateCourse(course) {
   const schema = Joi.object({
-    name: Joi.string().min(3).required(),
+    course: Joi.string().min(3).required(),
   });
   return schema.validate(course);
 }
