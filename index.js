@@ -63,6 +63,27 @@ app.post("/api/courses", (req, res) => {
 
     dataFromJson.push(course);
     
+
+    res.send(courses);
+});
+
+// Update / Edit Course
+app.put('/api/courses/:id', (req, res) => {
+    fs.readFile('db.json', (err,data) => {
+      if (err) {
+      console.error(err);
+      }
+  const courses = JSON.parse(data);
+    const updateCourse = courses.find((c) => c.id === parseInt(req.params.id));
+    if (!updateCourse) return res.status(404).send('The course with the given ID was not found');//404 (object not found)
+    //validate
+    //If invalid, return 400 - Bad request
+    const { error } = validateCourse(req.body); // result.error
+    if (error) return res.status(400).send(error.details[0].message);
+    //Update course
+    updateCourse.course = req.body.course;
+    res.send(updateCourse); //Return the update course
+
     const jsonData = JSON.stringify(dataFromJson, null, 4);
 
     fs.writeFile("db.json", jsonData, (err) => {
@@ -91,6 +112,7 @@ app.delete('/api/courses/:id', (req, res)=>{
     //response to clint
     res.send(course);
     // update JSON
+
     const updatedCourses = JSON.stringify(courses, null, 2);
    fs.writeFile('db.json',updatedCourses, (err)=>{
        if(err){
@@ -98,6 +120,10 @@ app.delete('/api/courses/:id', (req, res)=>{
            return;
        }
    })
+
+    });
+  });
+
 });
 });
 
@@ -107,4 +133,5 @@ function validateCourse(course) {
   });
   return schema.validate(course);
 }
+
 
