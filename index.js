@@ -16,8 +16,8 @@ app.get("/", (req, res) => {
     res.send(`<body style="background: #A5D4A6">
     <div style="text-align:center; margin-top:10%; ">
     <h1 style = "color:red">RESTFUL API </h1>
-    <button style ="background: #EA1A65"><a href=url+"api/courses">Access all the courses</a></button>
-    <button style ="background : #EA1A65"><a href=url+"api/courses/1" >Access a specific course with id</a></button>
+    <button style ="background: #EA1A65"><a href="${url}api/courses">Access all the courses</a></button>
+    <button style ="background : #EA1A65"><a href="${url}api/courses/1" >Access a specific course with id</a></button>
     <button style ="background : #EA1A65"><a href="https://www.postman.com/">Use Postman to access methods</a></button>
   </div></body> `);
   });
