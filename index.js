@@ -36,26 +36,27 @@ app.get('/api/courses/:id', (req, res) => {
 });
 
 // Update / Edit Course
-app.put('/api/courses/:id',(req,res) => {
-    const course = db.find(c=>c.id === parseInt(req.params.id));
-    if (!course) res.status(404).send('The course with the given ID was not found')
-
-    const { error } = validateCourse(req.body);
-    if (error) {
-        res.status(400).send(result.error.details[0].message);
-        return;
-    }
-    course.name = req.body.name;
-    res.send(course);
-});
-
-function validateCourse(course) {
-    const schema = {
-        name: Joi.string().min(3).required()
-    };
-    return Joi.validate(course,schema);
-    if (result.error) {
-        res.status(400).send(result.error.details[0].message);
-        return;
-    }
-}
+app.put('/api/courses/:id', (req, res) => {
+    fs.readFile('db.json', (err,data) => {
+      if (err) {
+      console.error(err);
+      }
+  const courses = JSON.parse(data);
+    const updateCourse = courses.find((c) => c.id === parseInt(req.params.id));
+    if (!updateCourse) return res.status(404).send('The course with the given ID was not found');//404 (object not found)
+    //validate
+    //If invalid, return 400 - Bad request
+    const { error } = validateCourse(req.body); // result.error
+    if (error) return res.status(400).send(error.details[0].message);
+    //Update course
+    updateCourse.course = req.body.course;
+    res.send(updateCourse); //Return the update course
+    const updatedCourses = JSON.stringify(courses, null, 2);
+   fs.writeFile('db.json',updatedCourses, (err)=>{
+       if(err){
+           res.status(500).send(err);
+           return;
+       }
+   })
+    });
+  });
