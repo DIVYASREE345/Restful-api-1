@@ -52,3 +52,41 @@ app.delete("/api/courses/:id", (req, res) => {
   //response to clint
   res.send(courses);
 });
+
+app.post("/api/courses", (req, res) => {
+  const { error } = validateCourse(req.body);
+
+  if (error) {
+    return res.status(400).send(error.details[0].message);
+  }
+
+  fs.readFile("db.json", (err, data) => {
+    if (err) {
+      res.status(500).send(err.message);
+      return;
+    }
+    const dataFromJson = JSON.parse(data);
+    
+    const course = {
+      id: Date.now(),
+      name: req.body.name,
+    };
+
+    dataFromJson.push(course);
+    
+    const jsonData = JSON.stringify(dataFromJson, null, 4);
+
+    fs.writeFile("db.json", jsonData, (err) => {
+      if (err) return res.status(500).send(err.message);
+
+      res.status(201).send(course);
+    });
+  });
+});
+
+function validateCourse(course) {
+  const schema = Joi.object({
+    name: Joi.string().min(3).required(),
+  });
+  return schema.validate(course);
+}
