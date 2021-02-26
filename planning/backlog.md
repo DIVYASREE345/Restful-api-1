@@ -6,16 +6,16 @@ A collection of user stories you can choose from. Stories inside of each priorit
 
 > these are necessary for basic usability
 
-- [ ] A user can create a new empty list with any title
-  - _acceptance criteria ..._
-- [ ] A user can remove any list from the manager
-  - _acceptance criteria ..._
-- [ ] A user can add items to each list instance
-  - _acceptance criteria ..._
-- [ ] A user can remove items from each list instance
-  - _acceptance criteria ..._
-- [ ] A user can update items in each list instance
-  - _acceptance criteria ..._
+
+- [x] a user must be able to get all courses
+      
+- [x]  a user must be able to get one course by id
+
+- [x]  a user must be able to post a new course with a unique id
+    
+- [x]  a user be able put(update) an existing course
+    
+- [x]  a user be able to delete a course by id
 
 ## Should-Haves
 
